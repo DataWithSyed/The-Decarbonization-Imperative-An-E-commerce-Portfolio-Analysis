@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Decarbonization Imperative: A Portfolio Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+         @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#C4DFE6]">
+
+    <header class="bg-[#003B46] text-white p-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight">The Decarbonization Imperative</h1>
+        <p class="text-xl md:text-2xl mt-2 text-[#C4DFE6]">A Carbon Analysis for a Growing E-commerce Portfolio</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="baseline" class="bg-white rounded-lg shadow-xl p-6 mb-8">
+            <h2 class="text-3xl font-bold text-[#003B46] text-center mb-4">The Baseline: Where We Stand</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-8 text-center">Our analysis begins with a three-year historical view of the carbon footprint for our portfolio of three diverse e-commerce brands. The data reveals a clear upward trend, with a combined portfolio emissions growth rate of <span class="font-bold text-[#07575B]">12.28%</span> annually. This trajectory sets the stage for our forward-looking analysis.</p>
+            <div class="chart-container h-[450px] max-h-[550px]">
+                <canvas id="historicalChart"></canvas>
+            </div>
+        </section>
+
+        <section id="forecast" class="bg-white rounded-lg shadow-xl p-6 mb-8">
+            <h2 class="text-3xl font-bold text-center text-[#003B46] mb-4">The Fork in the Road: Two Futures</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-8 text-center">Using the historical growth rate, we've projected emissions over the next ten years. This presents two starkly different paths: a "Business as Usual" scenario, where emissions grow unchecked, and a "Decarbonization Target" scenario, where we implement an aggressive but achievable 7% annual reduction. The choice we make today defines our impact tomorrow.</p>
+            <div class="chart-container h-[450px] max-h-[550px]">
+                <canvas id="forecastChart"></canvas>
+            </div>
+            <div class="text-center mt-8 bg-[#003B46] text-white p-6 rounded-lg max-w-2xl mx-auto shadow-lg">
+                 <p class="text-xl text-[#C4DFE6]">By choosing the Decarbonization Target path, we can avoid:</p>
+                 <p class="text-7xl md:text-8xl font-black my-2">48,229</p>
+                 <p class="text-xl text-[#C4DFE6]">tonnes of CO2e over the next 10 years.</p>
+            </div>
+        </section>
+
+        <section id="blueprint" class="bg-white rounded-lg shadow-xl p-6 mb-8">
+            <h2 class="text-3xl font-bold text-center text-[#003B46] mb-4">The Blueprint for Action</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-8 text-center">Achieving the Decarbonization Target requires a focused, multi-pronged strategy. Our recommendations center on three high-impact areas that address the primary drivers of emissions in the e-commerce value chain.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#07575B]">
+                    <div class="text-5xl mb-4">🌿</div>
+                    <h3 class="text-2xl font-bold text-[#003B46] mb-2">Material Decarbonization</h3>
+                    <p class="text-gray-700">The highest impact lies in changing what our products are made of. We must prioritize sourcing materials with a certified lower footprint, such as shifting from virgin to recycled polyester, which can cut material emissions by over 70%.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#07575B]">
+                    <div class="text-5xl mb-4">🚚</div>
+                    <h3 class="text-2xl font-bold text-[#003B46] mb-2">Logistics Optimization</h3>
+                    <p class="text-gray-700">We need to tackle emissions from packaging and delivery. This means reducing packaging weight, eliminating plastics, shifting from air to sea freight, and partnering with last-mile carriers that utilize electric vehicle fleets.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#07575B]">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold text-[#003B46] mb-2">Supplier Engagement</h3>
+                    <p class="text-gray-700">True decarbonization requires systemic change. We must move beyond industry averages by collecting primary data from our key suppliers and collaborating with them to transition their manufacturing facilities to 100% renewable energy.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003B46] text-white text-center p-6 mt-8">
+        <p class="font-bold">Data-Driven Decarbonization for a Sustainable Future.</p>
+        <p>An analysis powered by Vaayu's methodology.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const palette = {
+                darkTeal: '#003B46',
+                mediumTeal: '#07575B',
+                lightTeal: '#66A5AD',
+                paleBlue: '#C4DFE6',
+                dangerRed: '#D9534F'
+            };
+
+            const tooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            const historicalData = {
+                labels: ['2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'EcoThread Apparel',
+                        data: [1500, 1650, 1850],
+                        backgroundColor: palette.mediumTeal,
+                    },
+                    {
+                        label: 'GlowUp Cosmetics',
+                        data: [800, 780, 750],
+                        backgroundColor: palette.lightTeal,
+                    },
+                    {
+                        label: 'TerraHome Goods',
+                        data: [2200, 2450, 2800],
+                        backgroundColor: palette.darkTeal,
+                    }
+                ]
+            };
+            const historicalChartCtx = document.getElementById('historicalChart').getContext('2d');
+            new Chart(historicalChartCtx, {
+                type: 'bar',
+                data: historicalData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Portfolio Historical Emissions (tonnes CO2e)',
+                            font: { size: 16 }
+                        },
+                        legend: { position: 'bottom' },
+                         ...tooltipConfig.plugins
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: { display: true, text: 'Tonnes CO2e' }
+                        }
+                    }
+                }
+            });
+
+            const forecastData = {
+                labels: [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034],
+                datasets: [
+                    {
+                        label: 'Business as Usual (BAU)',
+                        data: [5400, 6064, 6808, 7642, 8580, 9632, 10813, 12140, 13629, 15299, 17175],
+                        borderColor: palette.dangerRed,
+                        backgroundColor: 'rgba(217, 83, 79, 0.1)',
+                        fill: false,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Decarbonization Target (DT)',
+                        data: [5400, 5022, 4670, 4343, 4039, 3757, 3494, 3249, 3022, 2810, 2614],
+                        borderColor: palette.mediumTeal,
+                        backgroundColor: 'rgba(7, 87, 91, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            };
+            const forecastChartCtx = document.getElementById('forecastChart').getContext('2d');
+            new Chart(forecastChartCtx, {
+                type: 'line',
+                data: forecastData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '10-Year Portfolio Emissions Forecast (tonnes CO2e)',
+                            font: { size: 16 }
+                        },
+                        legend: { position: 'top' },
+                        ...tooltipConfig.plugins
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Tonnes CO2e' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
